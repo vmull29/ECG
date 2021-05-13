@@ -1,0 +1,29 @@
+%load ECG Signal
+load normalCardioSignal
+
+fs=300; % Hz
+dt=1/fs; % s
+t=0:dt:30; % s
+
+%Raw Data Signal Plot
+subplot(2,2,1);%organizes where on the subplot
+plot(t(1:end-1),normal)%Plot signal versus time
+title('Raw Signal Data vs. Time')
+
+%label the PQRST complex
+subplot(2,2,2);%organizes where on the subplot
+plot(t(1:end-1),normal)%Plot signal versus time
+xlim([15:16])
+text(15.23,55,'P')
+text(15.27,-31,'Q')
+text(15.33,808,'R')
+text(15.4,-145,'S')
+text(15.55,92,'T')
+title('Labeled PQRST Complex on Raw Data Signal')
+
+%normalizing the signal from 0 to 1
+normalizedsignal=abs(normal); %absolute value of normal function
+[normalizedsignal_max, index]=max(normalizedsignal); % finding max of normalized signal
+subplot(2,2,3);%organizes where on the subplot
+plot(t(1:end-1),normalizedsignal/max(normalizedsignal));%Plot normalized signal versus time
+title('Normalized Signal Data vs. Time')
